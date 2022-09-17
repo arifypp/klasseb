@@ -1,0 +1,15 @@
+/**
+*   Custom Css
+*/
+.card_location{
+    text-align: center;
+}
+.card_location img{
+    padding-top: 10px;
+    width: 50px !important;
+    text-align: center;
+    margin: auto;
+}
+.location-image img {
+    width: 15px !important;
+}

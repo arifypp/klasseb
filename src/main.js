@@ -1,8 +1,30 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import Jquery from "jquery";
+import bootstrap from "bootstrap";
+import vueCarousel from 'vue-carousel';
+import SplitCarosel from 'vue-split-carousel';
 
-Vue.config.productionTip = false
+window.$ = window.jQuery = Jquery
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+import "./assets/css/style.css";
+import "./assets/css/custom.css";
+
+
+Vue.config.productionTip = false;
+Vue.config.ignoredElements = [/^ion-/]
+
+let app;
+if (!app) {
+  new Vue({
+    router,
+    store,
+    Jquery,
+    bootstrap,
+    vueCarousel,
+    SplitCarosel,
+    render: (h) => h(App),
+  }).$mount('#app');
+}
