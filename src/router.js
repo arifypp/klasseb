@@ -60,7 +60,16 @@ const router = new VueRouter({
 // Set SEO metatag
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} | KlasseB`;
+  if (to.name) {
+    // Start the route progress bar.
+    NProgress.start()
+  }
   next();
+});
+
+router.afterEach((to, from) => {
+  // Complete the animation of the route progress bar.
+  NProgress.done()
 });
 
 // Logged-in state check

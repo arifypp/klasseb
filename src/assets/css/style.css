@@ -465,7 +465,10 @@ button:hover, button:active, button:focus {
   background: transparent;
 }
 
-.appBottomMenu .item.active i.icon,
+.appBottomMenu .item.active i.icon, 
+.appBottomMenu .router-link-exact-active i.icon,
+.appBottomMenu .router-link-exact-active ion-icon,
+.appBottomMenu .router-link-exact-active strong,
 .appBottomMenu .item.active ion-icon,
 .appBottomMenu .item.active strong {
   color: #2F5888 !important;

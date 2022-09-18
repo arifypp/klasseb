@@ -1,26 +1,8 @@
 <template>
   <div id="app">
-  <!-- loader -->
-    <div id="loader">
-      <div class="spinner-border text-primary" role="status"></div>
-    </div>
-  <!-- * loader -->
+    <Loader />
   <!-- App Header -->
-    <div class="appHeader bg-primary scrolled" v-if="$store.state.isLoggedIn">
-      <div class="left">
-          <a href="#" class="headerButton" data-toggle="modal" data-target="#sidebarPanel">
-              <ion-icon name="menu-outline"></ion-icon>
-          </a>
-      </div>
-      <div class="pageTitle">
-          KlasseB
-      </div>
-      <div class="right">
-          <a href="javascript:;" class="headerButton toggle-searchbox">
-              <ion-icon name="search-outline"></ion-icon>
-          </a>
-      </div>
-  </div>
+    <Header />
   <!-- * App Header -->
 
   <!-- Search Component -->
@@ -42,135 +24,22 @@
     <router-view />
 
   <!-- App Bottom Menu -->
-  <div class="appBottomMenu" v-if="$store.state.isLoggedIn">
-    <router-link :to="{name: 'Home'}" class="item active">
-          <div class="col">
-              <ion-icon name="home-outline"></ion-icon>
-          </div>
-      </router-link>
-      <router-link :to="{name: 'School'}" class="item">
-          <div class="col">
-              <ion-icon name="cube-outline"></ion-icon>
-          </div>
-      </router-link>
-      <a href="page-contact.html" class="item">
-          <div class="col">
-              <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-          </div>
-      </a>
-      <a href="page-about.html" class="item">
-          <div class="col">
-              <ion-icon name="layers-outline"></ion-icon>
-          </div>
-      </a>
-      <a href="javascript:;" class="item" data-toggle="modal" data-target="#sidebarPanel">
-          <div class="col">
-              <ion-icon name="menu-outline"></ion-icon>
-          </div>
-      </a>
-  </div>
+    <Footer />
   <!-- * App Bottom Menu -->
 
   <!-- App Sidebar -->
-  <div class="modal fade panelbox panelbox-left" id="sidebarPanel" tabindex="-1" role="dialog" v-if="$store.state.isLoggedIn">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-body p-0">
-
-                  <!-- profile box -->
-                  <div class="profileBox">
-                      <div class="image-wrapper">
-                          <img src="./assets/img/sample/avatar/avatar1.jpg" alt="image" class="imaged rounded">
-                      </div>
-                      <div class="in">
-                          <strong>{{getDisplayName}}</strong>
-                          <div class="text-muted">
-                              <ion-icon name="location"></ion-icon>
-                              Norway
-                          </div>
-                      </div>
-                      <a href="javascript:;" class="close-sidebar-button" data-dismiss="modal">
-                          <ion-icon name="close"></ion-icon>
-                      </a>
-                  </div>
-                  <!-- * profile box -->
-
-                  <ul class="listview flush transparent no-line image-listview mt-2">
-                      <li>
-                          <router-link :to="{name: 'Home'}" class="item">
-                              <div class="icon-box bg-primary">
-                                  <ion-icon name="home-outline"></ion-icon>
-                              </div>
-                              <div class="in">
-                                  Home
-                              </div>
-                          </router-link>
-                      </li>
-                      <li>
-                          <router-link :to="{name: 'School'}" class="item">
-                              <div class="icon-box bg-primary">
-                                  <ion-icon name="cube-outline"></ion-icon>
-                              </div>
-                              <div class="in">
-                                  School
-                              </div>
-                          </router-link>
-                      </li>
-                      <li>
-                          <a href="app-pages.html" class="item">
-                              <div class="icon-box bg-primary">
-                                  <ion-icon name="layers-outline"></ion-icon>
-                              </div>
-                              <div class="in">
-                                  <div>Pages</div>
-                              </div>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="page-chat.html" class="item">
-                              <div class="icon-box bg-primary">
-                                  <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                              </div>
-                              <div class="in">
-                                  <div>Chat</div>
-                                  <span class="badge badge-danger">5</span>
-                              </div>
-                          </a>
-                      </li>
-                      <li>
-                          <div class="item">
-                              <div class="icon-box bg-primary">
-                                  <ion-icon name="moon-outline"></ion-icon>
-                              </div>
-                              <div class="in">
-                                  <div>Dark Mode</div>
-                                  <div class="custom-control custom-switch">
-                                      <input type="checkbox" class="custom-control-input dark-mode-switch"
-                                          id="darkmodesidebar">
-                                      <label class="custom-control-label" for="darkmodesidebar"></label>
-                                  </div>
-                              </div>
-                          </div>
-                      </li>
-                  </ul>
-              </div>
-
-              <!-- sidebar buttons -->
-              <div class="sidebar-buttons">
-                  <a href="#logout" class="button" @click.prevent="logout">
-                      <ion-icon name="log-out-outline"></ion-icon>
-                  </a>
-              </div>
-              <!-- * sidebar buttons -->
-          </div>
-      </div>
-  </div>
+    <Sidebar />
   <!-- * App Sidebar -->
 
   </div>
 </template>
 
 <script>
+import Loader from "./components/Loader.vue";
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+import Sidebar from "./components/Sidebar.vue";
+
 export default {
   name: 'App',
   data() {
@@ -190,6 +59,12 @@ export default {
     }
   },
 
+  components : {
+        Loader,
+        Header,
+        Footer,
+        Sidebar
+  },
   methods: {
     logout() {
       this.$store.dispatch('logout');

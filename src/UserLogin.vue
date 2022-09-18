@@ -93,8 +93,8 @@ export default {
         this.message = 'Email or password is wrong';
       }
 
-
     }
+
   },
   mounted: function() {
     jQuery(document).ready(function () {

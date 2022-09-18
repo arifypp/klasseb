@@ -7,6 +7,7 @@ import bootstrap from "bootstrap";
 import vueCarousel from 'vue-carousel';
 import SplitCarosel from 'vue-split-carousel';
 
+
 window.$ = window.jQuery = Jquery
 
 import "./assets/css/style.css";
