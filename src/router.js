@@ -4,6 +4,8 @@ import store from './store';
 
 import Home from './pages/Home.vue';
 import School from './pages/School.vue';
+import About from './pages/About.vue';
+import Contact from './pages/Contact.vue';
 import UserLogin from './UserLogin.vue';
 import UserRegister from './UserRegister.vue';
 
@@ -25,6 +27,24 @@ const routes = [
     component: School,
     meta: {
       title: 'School',
+      noAuthRequired: true,
+    },
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
+    meta: {
+      title: 'About',
+      noAuthRequired: true,
+    },
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact,
+    meta: {
+      title: 'Contact',
       noAuthRequired: true,
     },
   },

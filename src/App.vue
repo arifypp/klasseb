@@ -69,12 +69,8 @@ export default {
     logout() {
       this.$store.dispatch('logout');
     },
-    getDisplayName() {
-        this.getDisplayName = localStorage.getItem('displayName');
-    }
   },
   mounted: function () {
-    this.getDisplayName();
     // Page Loader with preload
     jQuery(document).ready(function () {
         setTimeout(() => {
