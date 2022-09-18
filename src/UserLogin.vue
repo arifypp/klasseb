@@ -8,6 +8,9 @@
               <img src="./assets/img/car-bg.png" alt="">
           </div>
           <div class="section mt-1 pl-5 pr-5">
+            <div v-if="loading">
+                <Loader />
+            </div>
               <!-- Error message -->
               <div v-if="message" class="form-message is-error-message alert alert-danger">
                 {{ message }}
@@ -54,58 +57,55 @@
 </template>
 
 <script>
+import Loader from './components/Loader.vue';
+
 export default {
-  name: 'UserLogin',
-  data() {
-    return {
-      username: '',
-      password: '',
-
-      message: '',
-
-    };
-  },
-
-  methods: {
-    async login() {
-
-      this.message = '';
-
-      try {
-        // Call the login function in store.js
-        await this.$store.dispatch('login', {
-          username: this.username,
-          password: this.password,
+    name: "UserLogin",
+    data() {
+        return {
+            username: "",
+            password: "",
+            message: "",
+            loading: false,
+        };
+    },
+    methods: {
+        async login() {
+           this.loading = true;
+            this.message = "";
+            try {
+                // Call the login function in store.js
+                await this.$store.dispatch("login", {
+                    username: this.username,
+                    password: this.password,
+                });
+                // if redirected to login from secured page, redirect back
+                if (this.$route.query.redirectTo) {
+                    // this.$router.push({ name: this.$route.query.redirectTo });
+                    this.$router.push({ name: "Home" });
+                    window.location.reload();
+                }
+                // else redirect to Home
+                else {
+                    this.$router.push({ name: "Home" });
+                    window.location.reload();
+                }
+            }
+            catch (error) {
+                this.loading = false;
+                this.message = "Email or password is wrong";
+            }
+        }
+    },
+    mounted: function () {
+        jQuery(document).ready(function () {
+            jQuery(".modal-backdrop").remove();
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            if (isLoggedIn) {
+                router.push({ name: "Home" });
+            }
         });
-
-        // if redirected to login from secured page, redirect back
-        if (this.$route.query.redirectTo) {
-          // this.$router.push({ name: this.$route.query.redirectTo });
-          this.$router.push({ name: 'Home' });
-          window.location.reload();
-        }
-        // else redirect to Home
-        else {
-          this.$router.push({ name: 'Home' });
-          window.location.reload();
-        }
-      } catch (error) {
-        this.message = 'Email or password is wrong';
-      }
-
-    }
-
-  },
-  mounted: function() {
-    jQuery(document).ready(function () {
-      jQuery('.modal-backdrop').remove();
-      
-      const isLoggedIn = localStorage.getItem('isLoggedIn');
-      if( isLoggedIn ) {
-        router.push({ name: 'Home' });
-      }
-    });
-
-  }
+    },
+    components: { Loader }
 }
 </script>

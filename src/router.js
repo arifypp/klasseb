@@ -4,6 +4,7 @@ import store from './store';
 
 import Home from './pages/Home.vue';
 import School from './pages/School.vue';
+import SingleSchool from './pages/SingleSchool.vue';
 import About from './pages/About.vue';
 import Contact from './pages/Contact.vue';
 import UserLogin from './UserLogin.vue';
@@ -27,6 +28,15 @@ const routes = [
     component: School,
     meta: {
       title: 'School',
+      noAuthRequired: true,
+    },
+  },
+  {
+    path: '/single/:id',
+    name: 'singleSchool',
+    component: SingleSchool,
+    meta: {
+      title: 'Single School',
       noAuthRequired: true,
     },
   },

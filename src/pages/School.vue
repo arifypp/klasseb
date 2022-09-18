@@ -9,7 +9,8 @@
             <Loader />
         </div>
         <div class="section mt-3 mb-3" v-for="(post, index) in posts" :key="index">
-            <div class="card">
+            <router-link :to="{ name: 'singleSchool', params: { id : post.id }}">
+            <div class="card" v-bind:id="'post-' + post.id">
                 <img :src="post.featured_image"  class="card-img-top" alt="image">
                 <div class="card-body align-items-end">
                     <div class="school-content d-flex justify-content-between">
@@ -30,6 +31,7 @@
                     </div>
                 </div>
             </div>
+            </router-link>
         </div>
     </div>
 </template>
