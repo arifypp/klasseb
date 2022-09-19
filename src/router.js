@@ -5,6 +5,7 @@ import store from './store';
 import Home from './pages/Home.vue';
 import School from './pages/School.vue';
 import SingleSchool from './pages/SingleSchool.vue';
+import catSchool from './pages/catSchool.vue';
 import About from './pages/About.vue';
 import Contact from './pages/Contact.vue';
 import UserLogin from './UserLogin.vue';
@@ -37,6 +38,15 @@ const routes = [
     component: SingleSchool,
     meta: {
       title: 'Single School',
+      noAuthRequired: true,
+    },
+  },
+  {
+    path: '/catSchool/:id',
+    name: 'catSchool',
+    component: catSchool,
+    meta: {
+      title: 'Schoo by city',
       noAuthRequired: true,
     },
   },

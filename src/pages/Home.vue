@@ -9,55 +9,23 @@
 
       <div class="section full mt-3 mb-3">
         <split-carousel :display-amount="6">
-            <split-carousel-item>
-                <div class="card_location">
-                    <img src="../assets/img/location.png" class="img-fluid" alt="image" width="20px">
-                    <h4 class="mb-0">Rogaland</h4>
-                </div>
+
+            <split-carousel-item v-for="(city, index) in cities" :key="index">
+                <router-link :to="{ name: 'catSchool', params: { id : city.term_id }}" >
+                    <div class="card_location">
+                        <img src="../assets/img/location.png" class="img-fluid" alt="image" width="20px">
+                        <h4 class="mb-0">{{city.name}}</h4>
+                    </div>
+                </router-link>
             </split-carousel-item>
-            <split-carousel-item>
-                <div class="card_location">
-                    <img src="../assets/img/location.png" class="img-fluid" alt="image" width="20px">
-                    <h4 class="mb-0">Rogaland</h4>
-                </div>
-            </split-carousel-item>
-            <split-carousel-item>
-                <div class="card_location">
-                    <img src="../assets/img/location.png" class="img-fluid" alt="image" width="20px">
-                    <h4 class="mb-0">Rogaland</h4>
-                </div>
-            </split-carousel-item>
-            <split-carousel-item>
-                <div class="card_location">
-                    <img src="../assets/img/location.png" class="img-fluid" alt="image" width="20px">
-                    <h4 class="mb-0">Rogaland</h4>
-                </div>
-            </split-carousel-item>
-            <split-carousel-item>
-                <div class="card_location">
-                    <img src="../assets/img/location.png" class="img-fluid" alt="image" width="20px">
-                    <h4 class="mb-0">Rogaland</h4>
-                </div>
-            </split-carousel-item>
-            <split-carousel-item>
-                <div class="card_location">
-                    <img src="../assets/img/location.png" class="img-fluid" alt="image" width="20px">
-                    <h4 class="mb-0">Rogaland</h4>
-                </div>
-            </split-carousel-item>
-            <split-carousel-item>
-                <div class="card_location">
-                    <img src="../assets/img/location.png" class="img-fluid" alt="image" width="20px">
-                    <h4 class="mb-0">Rogaland</h4>
-                </div>
-            </split-carousel-item>
+    
         </split-carousel>
       </div>
 
 
     <div class="section mt-3 mb-3">
         <div class="header-large-title mb-1 bg-primary ml-0 p-1 rounded">
-            <h4 class="subtitle text-white">Near School</h4>
+            <h4 class="subtitle text-white">Today: Best Prices School</h4>
         </div>
     </div>
     <div v-if="loading">
@@ -105,6 +73,7 @@ export default {
                 UserDisplayName: localStorage.getItem('displayName'),
                 // Wordpress Posts Endpoint
                 postsUrl: "http://combrokers.co/klasseb/wp-json/wp/v2/listPost",
+                LocationUrl: "http://combrokers.co/klasseb/wp-json/wp/v2/listingLocation",
                 queryOptions: {
                     per_page: 6, // Only retrieve the 10 most recent blog posts.
                     page: 1, // Current page of the collection.
@@ -112,7 +81,8 @@ export default {
                 },
                 loading: true,
                 // Returned Posts in an Array
-                posts: []
+                posts: [],
+                cities: [],
             };
         },
     components: {
@@ -127,6 +97,18 @@ export default {
         .then(response => {
             this.posts = response.data;
             console.log("Posts retrieved!");
+            this.loading = false;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+        // Location
+        axios
+        .get(this.LocationUrl)
+        .then(response => {
+            this.cities = response.data;
+            console.log(response.data[0]);
             this.loading = false;
         })
         .catch(error => {
