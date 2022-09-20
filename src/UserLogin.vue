@@ -23,18 +23,12 @@
                   <div class="form-group boxed">
                       <div class="input-wrapper">
                           <input type="email" class="form-control" v-model.trim="username" id="email1" placeholder="Email address">
-                          <!-- <i class="clear-input">
-                              <ion-icon name="close-circle"></ion-icon>
-                          </i> -->
                       </div>
                   </div>
 
                   <div class="form-group boxed">
                       <div class="input-wrapper">
                           <input type="password" class="form-control" v-model.trim="password" id="password1" placeholder="Password">
-                          <!-- <i class="clear-input">
-                              <ion-icon name="close-circle"></ion-icon>
-                          </i> -->
                       </div>
                   </div>
 

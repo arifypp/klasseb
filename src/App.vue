@@ -6,19 +6,7 @@
   <!-- * App Header -->
 
   <!-- Search Component -->
-  <div id="search" class="appHeader" v-if="$store.state.isLoggedIn">
-    <form class="search-form">
-        <div class="form-group searchbox">
-            <input type="text" class="form-control" placeholder="Search...">
-            <i class="input-icon">
-                <ion-icon name="search-outline"></ion-icon>
-            </i>
-            <a href="javascript:;" class="ml-1 close toggle-searchbox">
-                <ion-icon name="close-circle"></ion-icon>
-            </a>
-        </div>
-    </form>
-  </div>
+    <Search />
   <!-- * Search Component -->
 
     <router-view />
@@ -39,6 +27,7 @@ import Loader from "./components/Loader.vue";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Sidebar from "./components/Sidebar.vue";
+import Search from "./components/Search.vue";
 
 export default {
   name: 'App',
@@ -60,11 +49,12 @@ export default {
   },
 
   components : {
-        Loader,
-        Header,
-        Footer,
-        Sidebar
-  },
+    Loader,
+    Header,
+    Footer,
+    Sidebar,
+    Search
+},
   methods: {
     logout() {
       this.$store.dispatch('logout');
