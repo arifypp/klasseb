@@ -1,7 +1,7 @@
 <template>
     <div id="appCapsule" class="pt-0">
       <div class="login-form my-3">
-          <div class="section my-4">
+          <div class="section my-4 pt-3">
               <img src="./assets/img/logo.png" alt="image" class="form-image">
           </div>
           <div class="section my-3">

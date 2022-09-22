@@ -53,7 +53,7 @@ export default {
     },
     mounted: function () {
         axios
-            .get(this.postsUrl)
+            .get(`${process.env.VUE_APP_API_URL}/wp/v2/listPost`)
             .then(response => {
             this.posts = response.data;
             this.loading = false;

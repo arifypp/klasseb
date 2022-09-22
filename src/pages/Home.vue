@@ -93,7 +93,7 @@ export default {
     methods: {},
     mounted: function () {
         axios
-        .get(this.postsUrl)
+        .get(`${process.env.VUE_APP_API_URL}/wp/v2/listPost`)
         .then(response => {
             this.posts = response.data;
             console.log("Posts retrieved!");
@@ -105,7 +105,7 @@ export default {
 
         // Location
         axios
-        .get(this.LocationUrl)
+        .get(`${process.env.VUE_APP_API_URL}/wp/v2/listingLocation`)
         .then(response => {
             this.cities = response.data;
             console.log(response.data[0]);
