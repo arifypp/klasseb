@@ -72,8 +72,8 @@ export default {
             return {
                 UserDisplayName: localStorage.getItem('displayName'),
                 // Wordpress Posts Endpoint
-                postsUrl: "http://combrokers.co/klasseb/wp-json/wp/v2/listPost",
-                LocationUrl: "http://combrokers.co/klasseb/wp-json/wp/v2/listingLocation",
+                postsUrl: "https://ssssourcingbd.com/wp-json/wp/v2/listPost",
+                LocationUrl: "https://ssssourcingbd.com/wp-json/wp/v2/listingLocation",
                 queryOptions: {
                     per_page: 6, // Only retrieve the 10 most recent blog posts.
                     page: 1, // Current page of the collection.

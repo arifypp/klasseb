@@ -45,7 +45,7 @@ export default {
     data() {
         return {
             // Wordpress Posts Endpoint
-            postsUrl: "http://combrokers.co/klasseb/wp-json/wp/v2/listPost",
+            postsUrl: "https://ssssourcingbd.com/wp-json/wp/v2/listPost",
             loading: true,
             // Returned Posts in an Array
             posts: []
