@@ -26,7 +26,7 @@
         <form class="form" @submit.prevent="register">
           <div class="form-group boxed">
               <div class="input-wrapper">
-                  <input type="text" class="form-control" v-model.trim="name" id="Name" placeholder="Enter Name">
+                  <input type="text" class="form-control" v-model.trim="username" id="username" placeholder="Enter Username">
               </div>
           </div>
 
@@ -63,12 +63,14 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 import Loader from './components/Loader.vue';
 export default {
     name: "UserRegister",
     data() {
         return {
-            name: "",
+            username: "",
             email: "",
             password: "",
             passwordRepeat: "",
@@ -80,29 +82,25 @@ export default {
         async register() {
             this.message = "";
             this.loading = true;
-            try {
-                // Call the login function in store.js
-                await this.$store.dispatch("register", {
-                    name: this.name,
-                    username: this.email,
-                    password: this.password,
-                    passwordRepeat: this.passwordRepeat,
-                });
-                this.loading = false;
-                // if success, redirect to Login with message
-                this.$router.push({
-                    name: "UserLogin",
-                    query: {
-                        message: "Register successfull! You can now login"
-                    },
-                });
-            }
-            catch (error) {
-              this.loading = false;
-                this.message = this.message
-                    ? error.response.data.message
-                    : "No response from server";
-            }
+
+            // Call the login function in store.js
+            const response = await axios.post(`${process.env.VUE_APP_API_URL}/wp/v2/users/create`, {
+                username: this.username,
+                email: this.email,
+                password: this.password,
+            });
+            const data = response.data;
+            console.log(data);
+
+            this.loading = false;
+            // if success, redirect to Login with message
+            this.$router.push({
+                name: "UserLogin",
+                query: {
+                    message: "Register successfull! You can now login"
+                },
+            });
+            
         }
     },
     components: { Loader, Loader }
