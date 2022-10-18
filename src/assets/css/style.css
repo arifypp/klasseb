@@ -7692,3 +7692,43 @@ body.dark-mode-active .cart-item .in .text .detail {
 body.dark-mode-active .cart-item .cart-item-footer {
   border-top: 1px solid #1B283B;
 }
+
+
+.feature-school-img img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+.feature-school-content {
+  position: relative;
+  top: 10px;
+  width: 250px;
+}
+.feature-school-content h4 {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+  margin: 0;
+}
+.feature-school-content address {
+  color: #fff;
+  font-size: 12px;
+}
+.feature-school-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.feature-school-footer ul li span {
+  color: #fff !important;
+}
+.feature-school-footer {
+  display: block;
+  overflow: hidden;
+  margin-top: 20px;
+  border-top: 1px solid #4b6f99;
+  line-height: 45px;
+}

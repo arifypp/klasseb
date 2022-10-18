@@ -23,7 +23,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center mb-0 pb-0">
                         <div class="reviews">
-                            <span><img src="../assets/img/reviews.png" alt="img"> 152 Reviews</span>
+                            <span><img src="../assets/img/reviews.png" alt="img"> {{ post._cth_reviews }} Anmeldelser</span>
                         </div>
                         <div class="school-price">
                             <span><img src="../assets/img/price.png" alt="img"> kjøretime Kr: {{ post._price }}</span>

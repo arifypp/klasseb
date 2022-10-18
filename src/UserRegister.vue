@@ -75,6 +75,7 @@ export default {
             password: "",
             passwordRepeat: "",
             message: "",
+            errors: [],
             loading: false,
         };
     },
@@ -83,23 +84,51 @@ export default {
             this.message = "";
             this.loading = true;
 
-            // Call the login function in store.js
-            const response = await axios.post(`${process.env.VUE_APP_API_URL}/wp/v2/users/create`, {
-                username: this.username,
-                email: this.email,
-                password: this.password,
-            });
-            const data = response.data;
-            console.log(data);
+            this.errors = [];
 
-            this.loading = false;
-            // if success, redirect to Login with message
-            this.$router.push({
-                name: "UserLogin",
-                query: {
-                    message: "Register successfull! You can now login"
-                },
-            });
+            if (!this.username) {
+                this.loading = false;
+                this.message = "Username required";
+            }
+            if (!this.email) {
+                this.loading = false;
+                this.message = "Email required";
+            }
+
+            if (!this.password) {
+                this.loading = false;
+                this.message = "password required";
+            }
+
+            if(this.password == this.passwordRepeat) {
+                this.loading = false;
+                this.message = "password not matched";
+            }
+
+            if (this.username && this.email) {
+                // Call the login function in store.js
+                const response = await axios.post(`${process.env.VUE_APP_API_URL}/wp/v2/users/create`, {
+                    username: this.username,
+                    email: this.email,
+                    password: this.password,
+                });
+                const data = response.data;
+                console.log(data);
+
+                if( data == false ) {
+                    this.loading = false;
+                    this.message = "Data already exits";
+                }else {
+                    this.loading = false;
+                    // if success, redirect to Login with message
+                    this.$router.push({
+                        name: "UserLogin",
+                        query: {
+                            message: "Register successfull! You can now login"
+                        },
+                    });
+                }
+            }
             
         }
     },
